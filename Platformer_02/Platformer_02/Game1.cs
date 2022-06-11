@@ -50,6 +50,7 @@ namespace Platformer_02
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            player.Update(gameTime);
             // TODO: Add your update logic here
             SpriteSheetManager.Update(gameTime);
 

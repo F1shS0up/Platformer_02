@@ -27,12 +27,16 @@ namespace Platformer_02
         }
         public void Update(GameTime gameTime)
         {
-            pos += new Vector2(velocityX, velocityY);
+            ApplyGravity();
+
+
+
+            pos += new Vector2(velocityX * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000), velocityY * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000));
         }
 
-        public void ApplyGravity(GameTime gameTime)
+        public void ApplyGravity()
         {
-            velocityY += weight * (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000);
+            velocityY += weight;
         }
 
         public void Draw(SpriteBatch spriteBatch)

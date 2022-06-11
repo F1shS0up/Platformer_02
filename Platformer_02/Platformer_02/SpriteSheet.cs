@@ -42,6 +42,7 @@ namespace Platformer_02
         }
         public void setAnim(string name, int speedMS, bool pWaitForEnd)
         {
+            if(currentAnim == name) { return; }
             currentAnim = name;
             currentAnimSpeed = speedMS;
             waitForEnd = pWaitForEnd;
