@@ -4,9 +4,17 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/valer/Documents/MonogameProjects/GitHub/Platformer_02/Platformer_02/Platformer_02/Content/ParticleImage_PlayerFoot1.png</File>
+    <File>C:/Users/valer/Documents/MonogameProjects/GitHub/Platformer_02/Platformer_02/Platformer_02/Content/ParticleImage_PlayerFoot2.png</File>
+    <File>C:/Users/valer/Documents/MonogameProjects/GitHub/Platformer_02/Platformer_02/Platformer_02/Content/ParticleImage_PlayerLanding.png</File>
     <File>C:/Users/valer/Documents/MonogameProjects/GitHub/Platformer_02/Platformer_02/Platformer_02/Content/Sheet_Player.png</File>
+    <File>C:/Users/valer/Documents/MonogameProjects/GitHub/Platformer_02/Platformer_02/Platformer_02/Content/tileSetImage.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>

@@ -18,11 +18,12 @@ namespace Platformer_02
 
         private Dictionary<string, (int, int)> animKeys;
 
-        private int currentSprite;
-        private string currentAnim;
+        public int currentSprite;
+        public string currentAnim;
 
         private int currentAnimSpeed;
         private bool waitForEnd;
+        private bool destroyAfterEnd;
 
         private float time = 0;
         public SpriteSheet(Texture2D pTexture, int pWidth, int pHeight, Dictionary<string, (int, int)> pAnimKeys)
@@ -39,16 +40,28 @@ namespace Platformer_02
             time = 0;
 
             SpriteSheetManager.spriteSheets.Add(this);
+
+            setAnim("null", 0, false, false);
         }
-        public void setAnim(string name, int speedMS, bool pWaitForEnd)
+        public void setAnim(string name, int speedMS, bool pWaitForEnd, bool pDestroyAfterEnd)
         {
             if(currentAnim == name) { return; }
             currentAnim = name;
             currentAnimSpeed = speedMS;
             waitForEnd = pWaitForEnd;
 
+            destroyAfterEnd = pDestroyAfterEnd;
+
             time = 0;
             currentSprite = animKeys[currentAnim].Item1;
+
+            
+        }
+        public void setSprite(int spriteIndex)
+        {
+            setAnim("null", 0, false, false);
+            currentSprite = spriteIndex;
+
         }
         public void Update(GameTime gameTime)
         {
@@ -59,6 +72,9 @@ namespace Platformer_02
                     currentSprite++;
                     if(currentSprite > animKeys[currentAnim].Item2)
                     {
+                        if(destroyAfterEnd)
+                            currentAnim = "null";
+
                         currentSprite = animKeys[currentAnim].Item1;
                     }
                     time = 0;
@@ -71,7 +87,7 @@ namespace Platformer_02
         }
         public void Draw(Vector2 position, SpriteBatch spriteBatch, float rotation)
         {
-            if(currentAnim != "null")
+            if(currentSprite - 1 >= 0)
                 spriteBatch.Draw(splitedTexture[currentSprite - 1], position, null, Color.White, rotation, Vector2.Zero, 1f,SpriteEffects.None, 0f);
         }
         public static Texture2D[] Split(Texture2D original, int partWidth, int partHeight)

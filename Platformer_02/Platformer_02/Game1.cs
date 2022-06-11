@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+
+using TiledSharp;
 namespace Platformer_02
 {
     public class Game1 : Game
@@ -14,6 +16,8 @@ namespace Platformer_02
         Vector2 sizeWindow;
 
         Player player;
+
+        TileMapManager tileMapManager;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -28,10 +32,10 @@ namespace Platformer_02
             graphics.PreferredBackBufferHeight = GraphicsDevice.Adapter.CurrentDisplayMode.Height;
             graphics.ApplyChanges();
 
-            sizeWindow = new Vector2(graphics.PreferredBackBufferWidth / 320, graphics.PreferredBackBufferHeight / 180);
+            sizeWindow = new Vector2(graphics.PreferredBackBufferWidth / 384, graphics.PreferredBackBufferHeight / 216);
 
-            changing = new RenderTarget2D(GraphicsDevice, 320, 180);
-            nonChanging = new RenderTarget2D(GraphicsDevice, 320, 180);
+            changing = new RenderTarget2D(GraphicsDevice, 384, 216);
+            nonChanging = new RenderTarget2D(GraphicsDevice, 384, 216);
             base.Initialize();
         }
 
@@ -40,7 +44,9 @@ namespace Platformer_02
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
 
-            player = new Player(Content);
+            TmxMap map = new TmxMap("Content/TestMap.tmx");
+            tileMapManager = new TileMapManager(map, Content.Load<Texture2D>("tileSetImage"), 48 / map.TileWidth, map.TileWidth, map.TileHeight);
+            player = new Player(Content, tileMapManager);
             player.SetCurrentAnim("idleL", 300, false);
             // TODO: use this.Content to load your game content here
         }
@@ -76,6 +82,7 @@ namespace Platformer_02
             GraphicsDevice.Clear(Color.Transparent);
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
             player.Draw(spriteBatch);
+            ParticleImageManager.Draw(spriteBatch);
             spriteBatch.End();
             GraphicsDevice.SetRenderTarget(null);
         }
@@ -84,7 +91,7 @@ namespace Platformer_02
             GraphicsDevice.SetRenderTarget(nonChanging);
             GraphicsDevice.Clear(Color.LightBlue);
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
-
+            tileMapManager.Draw(spriteBatch);
             spriteBatch.End();
             GraphicsDevice.SetRenderTarget(null);
         }

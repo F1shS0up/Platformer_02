@@ -23,3 +23,9 @@ C:\Users\valer\Documents\MonogameProjects\GitHub\Platformer_02\Platformer_02\Pla
 C:\Users\valer\Documents\MonogameProjects\GitHub\Platformer_02\Platformer_02\Platformer_02\obj\Debug\netcoreapp3.1\Platformer_02.dll
 C:\Users\valer\Documents\MonogameProjects\GitHub\Platformer_02\Platformer_02\Platformer_02\obj\Debug\netcoreapp3.1\Platformer_02.pdb
 C:\Users\valer\Documents\MonogameProjects\GitHub\Platformer_02\Platformer_02\Platformer_02\obj\Debug\netcoreapp3.1\Platformer_02.genruntimeconfig.cache
+C:\Users\valer\Documents\MonogameProjects\GitHub\Platformer_02\Platformer_02\Platformer_02\bin\Debug\netcoreapp3.1\Content\TestMap.tmx
+C:\Users\valer\Documents\MonogameProjects\GitHub\Platformer_02\Platformer_02\Platformer_02\bin\Debug\netcoreapp3.1\Content\tileSet.tsx
+C:\Users\valer\Documents\MonogameProjects\GitHub\Platformer_02\Platformer_02\Platformer_02\bin\Debug\netcoreapp3.1\Content\tileSetImage.xnb
+C:\Users\valer\Documents\MonogameProjects\GitHub\Platformer_02\Platformer_02\Platformer_02\bin\Debug\netcoreapp3.1\Content\ParticleImage_PlayerFoot1.xnb
+C:\Users\valer\Documents\MonogameProjects\GitHub\Platformer_02\Platformer_02\Platformer_02\bin\Debug\netcoreapp3.1\Content\ParticleImage_PlayerFoot2.xnb
+C:\Users\valer\Documents\MonogameProjects\GitHub\Platformer_02\Platformer_02\Platformer_02\bin\Debug\netcoreapp3.1\Content\ParticleImage_PlayerLanding.xnb

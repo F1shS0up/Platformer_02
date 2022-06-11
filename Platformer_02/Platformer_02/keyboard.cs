@@ -21,4 +21,8 @@ public class keyboard
     {
         return currentKeyState.IsKeyDown(key) && !previousKeyState.IsKeyDown(key);
     }
+    public static bool HasBeenUnPressed(Keys key)
+    {
+        return !currentKeyState.IsKeyDown(key) && previousKeyState.IsKeyDown(key);
+    }
 }
