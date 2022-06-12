@@ -34,7 +34,7 @@ namespace Platformer_02
             spriteSheet = new SpriteSheet(Content.Load<Texture2D>("Sheet_Player"), 
                 32, 
                 32,
-                new Dictionary<string, (int, int)> { { "null", (0, 0) }, { "idleL", (2, 3) }, { "idleR", (4, 5) }, {"runR", (6, 13) }, {"runL", (14, 21) }, {"jumpRStart", (22, 23) },{"jumpRMid", (24, 26) }, {"jumpREnd", (27, 29) }, {"jumpL", (30, 37) } });
+                new Dictionary<string, (int, int)> { { "null", (0, 0) }, { "idleL", (2, 3) }, { "idleR", (4, 5) }, {"runR", (6, 13) }, {"runL", (14, 21) }, {"allJumpFrames",(22, 51) } });
 
 
             List<Rectangle> collisionObjectsInMap = new List<Rectangle>();
@@ -96,18 +96,18 @@ namespace Platformer_02
                 {
                     rightTrueleftFalse = true;
                     obj.initialVelocityX = Vector2.Lerp(new Vector2(obj.initialVelocityX, 0f), new Vector2(speed), 0.9f).X;
-                    SetCurrentAnim("runR", 50, false);
+                   
                 }
                 else if (Keyboard.GetState().IsKeyDown(Keys.Left))
                 {
                     rightTrueleftFalse = false;
                     obj.initialVelocityX = Vector2.Lerp(new Vector2(obj.initialVelocityX, 0f), new Vector2(-speed), 0.9f).X;
-                    SetCurrentAnim("runL", 50, false);
+                    
                 }
                 else
                 {
                     obj.initialVelocityX = 0;
-                    SetCurrentAnim("idleL", 300, false);
+                    
                 }
             }
             //Jumping
@@ -115,16 +115,22 @@ namespace Platformer_02
             Jump(gameTime);
             //Update object
             obj.Update(gameTime);
-            if(obj.inAir != beforeInAir)
+            if(obj.inAir == false && beforeInAir == true)
             {
                 landing.Instantiate(obj.pos, 50);
                 spriteSheet.setSprite(rightTrueleftFalse ? 28 : 36);
-               
-                
+                canWalk = false;
+                time1 = (float)gameTime.TotalGameTime.TotalMilliseconds;
             }
-            if(gameTime.TotalGameTime.TotalMilliseconds - time1 > 100 && time1 !=0)
+
+            if(gameTime.TotalGameTime.TotalMilliseconds - time1 > 50 && time1 !=0 && gameTime.TotalGameTime.TotalMilliseconds - time1 < 100)
+            {
+                spriteSheet.setSprite(rightTrueleftFalse ? 29 : 37);
+            }
+            else if(gameTime.TotalGameTime.TotalMilliseconds - time1 < 150 && time1 != 0 && (gameTime.TotalGameTime.TotalMilliseconds - time1 > 100))
             {
                 canWalk = true;
+                time1 = 0;
             }
         }
 
@@ -170,24 +176,23 @@ namespace Platformer_02
             Debug.WriteLine(obj.initialVelocityY);
             if(velocityY <= -jumpHeight + x * 1 && velocityY > -jumpHeight)
             {
-                return rightTrueleftFalse ? 23 : 31;
+                return obj.initialVelocityX != 0 ? (rightTrueleftFalse ? 38 : 45) : (rightTrueleftFalse ? 23 : 31);
             }
             else if (velocityY <= -jumpHeight + x * 2&& velocityY > -jumpHeight + x * 1)
             {
-                return rightTrueleftFalse ? 24 : 32;
+                return obj.initialVelocityX != 0 ? (rightTrueleftFalse ? 39 : 46) : (rightTrueleftFalse ? 24 : 32);
             }
             else if (velocityY <= -jumpHeight + x * 5 && velocityY > -jumpHeight + x *2)
             {
-                return rightTrueleftFalse ? 25 : 33;
+                return obj.initialVelocityX != 0 ? (rightTrueleftFalse ? 40 : 47) : (rightTrueleftFalse ? 25 : 33);
             }
             else  if (velocityY <= -jumpHeight + x * 8 && velocityY > -jumpHeight + x * 4)
             {
-                return rightTrueleftFalse ? 26 : 34;
+                return obj.initialVelocityX != 0 ? (rightTrueleftFalse ? 41 : 48) : (rightTrueleftFalse ? 26 : 34);
             }
             else
             {
-                time1 = (float)gameTime.TotalGameTime.TotalMilliseconds;
-                return rightTrueleftFalse ? 27 : 35;
+                return obj.initialVelocityX != 0 ? (rightTrueleftFalse ? 42 : 49) : (rightTrueleftFalse ? 27 : 35);
             }
            
            
